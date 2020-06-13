@@ -39,8 +39,10 @@
 
 - Пример од мојата програма: 
 - rx=assertThrows(RuntimeException.class, () -> obj.function(createList(new Angle(-1,25,50),new Angle(10,0,2))));
-       -  assertTrue(rx.getMessage().contains("The angle is smaller or greater then the minimum"));
-- Тука паѓа првиот услов, односно deg =-1 и затоа ни фрла ислучок.
+        assertTrue(rx.getMessage().contains("The angle is smaller or greater then the minimum"));     Тука паѓа првиот услов, односно deg =-1 и затоа ни фрла ислучок.
+- Втор пример:
+-  List<Integer> result1=new ArrayList<>(Arrays.asList(255133,1296000));
+        assertEquals(result1,obj.function(createList(new Angle(70,52,13),new Angle(360,0,0))));  Тука се во ред сите услови, односно немаме исклучок и програмата си работи супер. 
 #### За вториот, multiple condition
 Можни услови:
 1.	If( deg >=0 && deg <360) 
@@ -66,6 +68,6 @@
 - 4.3) ако имаме T &&T =TRUE, и тука се изврушва овој услов односно Min=0 && sec=0 и тој резултат го запишуваме во листата.
 - Ако првиот if е false, т.е падне, оди во else if, но ако и овој услов else if(deg==360) е false, oди во последниот else  каде што ни фрла exception.
 
-Во кодот имам функција која се вика testmultiplecondition, во неа ги проверувам сите услови.
-Кога правам assertThrows - ги проверувам условите кои што ми фрлаат exception.
-А за условите каде што секој услов е океј и програмата работи, правам листа и со помош на assertEquals пишувам добри бројки за да помине програмата(односно да немам ислучок) и резултатот го внесувам во листата што ја креирав.
+- Во кодот имам функција која се вика testmultiplecondition, во неа ги проверувам сите услови.
+- Кога правам assertThrows - ги проверувам условите кои што ми фрлаат exception.
+- За условите каде што секој услов е океј и програмата работи, правам листа и со помош на assertEquals пишувам добри бројки за да помине програмата(односно да немам ислучок) и резултатот го внесувам во листата што ја креирав.
