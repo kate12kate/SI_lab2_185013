@@ -14,26 +14,33 @@
 2.	If( min<0 || min>59)
 3.	If(sec <0 || sec >59)
 4.	 if(min==0 && sec ==0)
-( deg >=0 && deg <360)
-F && X -> deg < 0 – odi vo else kade sto frla exception
-T && F -> deg >= 360. Ako e 360 odi vo else ifot kade sto pravi уште една проверка. Ако е > 360 фрла exception
-T && T -> 0<=deg<360 – поминува ifot и оди надоле по програмата
-(min < 0 || min>59)
-T || X -> min<0 - exception
-F || T -> min>59 - exception
-F || F -> 0<=min<=59 – ifot не поминува, немаме exception, и одиме надоле по програмата.
-(sec <0 || sec >59)
-T || X -> sec<0 – exception 
-F || T -> sec>59 – exception 
-F || F -> 0<=sec<=59 – ifot не поминува, немаме exception, правиме пресметка
-(min==0 && sec ==0) – во овој if стигаме само ако deg=360
-F && X -> min != 0, sec = anything – ifot Не поминува, имаме еxception
-T && F -> min=0, sec != 0 – ifot не поминува, имаме еxception
-T && T -> min=0,sec=0 – ifot поминува, немаме еxception, правиме пресметка
+- ( deg >=0 && deg <360)
+- F && X -> deg < 0 – odi vo else kade sto frla exception
+- T && F -> deg >= 360. Ako e 360 odi vo else ifot kade sto pravi уште една проверка. Ако е > 360 фрла exception
+- T && T -> 0<=deg<360 – поминува ifot и оди надоле по програмата
+- (min < 0 || min>59)
+- T || X -> min<0 - exception
+- F || T -> min>59 - exception
+- F || F -> 0<=min<=59 – ifot не поминува, немаме exception, и одиме надоле по програмата.
+- (sec <0 || sec >59)
+- T || X -> sec<0 – exception 
+- F || T -> sec>59 – exception 
+- F || F -> 0<=sec<=59 – ifot не поминува, немаме exception, правиме пресметка
+- (min==0 && sec ==0) – во овој if стигаме само ако deg=360
+- F && X -> min != 0, sec = anything – ifot Не поминува, имаме еxception
+- T && F -> min=0, sec != 0 – ifot не поминува, имаме еxception
+- T && T -> min=0,sec=0 – ifot поминува, немаме еxception, правиме пресметка
 
 ### Објаснување на напишаните unit tests
 #### За првиот, every statement 
+- Во кодот имам функција која се вика testeverystatement, во неа ги проверувам сите услови.
+- Кога правам assertThrows - ги проверувам условите кои што ми фрлаат exception.Тоа се: прво, кога deg e <0, втор: min <0, трет: sec <0 и четврт кога deg==360, но минутите и секундите не се еднакви на нула. 
+- А за условите каде што секој услов е океј и програмата работи, правам листа и со помош на assertEquals пишувам добри бројки за да помине програмата(односно да немам ислучок) и резултатот го внесувам во листата што ја креирав.
 
+- Пример од мојата програма: 
+- rx=assertThrows(RuntimeException.class, () -> obj.function(createList(new Angle(-1,25,50),new Angle(10,0,2))));
+       -  assertTrue(rx.getMessage().contains("The angle is smaller or greater then the minimum"));
+- Тука паѓа првиот услов, односно deg =-1 и затоа ни фрла ислучок.
 #### За вториот, multiple condition
 Можни услови:
 1.	If( deg >=0 && deg <360) 
@@ -60,3 +67,5 @@ T && T -> min=0,sec=0 – ifot поминува, немаме еxception, пра
 - Ако првиот if е false, т.е падне, оди во else if, но ако и овој услов else if(deg==360) е false, oди во последниот else  каде што ни фрла exception.
 
 Во кодот имам функција која се вика testmultiplecondition, во неа ги проверувам сите услови.
+Кога правам assertThrows - ги проверувам условите кои што ми фрлаат exception.
+А за условите каде што секој услов е океј и програмата работи, правам листа и со помош на assertEquals пишувам добри бројки за да помине програмата(односно да немам ислучок) и резултатот го внесувам во листата што ја креирав.
